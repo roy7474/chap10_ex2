@@ -21,19 +21,25 @@ Enter a file name: mbox-short.txt
 # open file directly to easier testing
 fhand = open('mbox-short.txt')
 email_times = {}
+lst = list()
 
 for line in fhand:
     words = line.split()
     if len(words) < 3 or words[0] != 'From':
         continue
+# Find the hour in which the email was received by using ':'
     else:
         find_double_dots = words[5].find(':')
         double_dots = words[5][:find_double_dots]
         if double_dots not in email_times:
-            email_times[double_dots] = 1
+            email_times[double_dots] = 1  #add the time to the dictionary if is not there
 
         else:
             email_times[double_dots] +=1
 
-for key, value in email_times.items():
-    print(f'{key}: {value}')
+for key, value in list(email_times.items()):
+    lst.append((key,value))
+lst.sort()
+
+for key, value in lst:
+    print(key, value)
