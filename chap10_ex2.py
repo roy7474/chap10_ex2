@@ -43,3 +43,23 @@ lst.sort()
 
 for key, value in lst:
     print(key, value)
+
+
+    #name = input("Enter file:")
+#if len(name) < 1:
+#    name = "mbox-short.txt"
+hour_distribution = dict()
+fhandle = open('mbox-short.txt')# name)
+
+for line in fhandle:
+    words = line.split()
+    if len(words) <2 or words[0] != 'From': continue
+    else:
+        colon = words[5].find(':')
+        hour = words[5][:colon]
+        if hour not in hour_distribution:
+            hour_distribution[hour] = 1
+        else:
+            hour_distribution[hour] += 1
+            
+print(hour_distribution)
